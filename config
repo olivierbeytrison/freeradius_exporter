@@ -1,0 +1,7 @@
+{
+    "radius.address": "160.98.240.20:18121",
+    "radius.secret": "adminsecret",
+    "radius.timeout": 10000,
+    "radius.homeservers": "130.59.31.24:2083,130.59.31.25:2083",
+    "radius.clients": "160.98.240.12,160.98.240.13"
+}

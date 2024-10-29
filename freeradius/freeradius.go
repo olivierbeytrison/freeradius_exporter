@@ -77,6 +77,8 @@ const (
 	QueueLenAcct     = 165
 	QueueLenDetail   = 166
 
+	ClientIPAddress = 167 // ipaddr
+
 	ServerIPAddress           = 170 // ipaddr
 	ServerPort                = 171 // integer
 	ServerOutstandingRequests = 172 // integer

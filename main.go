@@ -30,6 +30,7 @@ func main() {
 	radiusTimeout := fs.Int("radius.timeout", 5000, "Timeout, in milliseconds [RADIUS_TIMEOUT].")
 	radiusAddr := fs.String("radius.address", "127.0.0.1:18121", "Address of FreeRADIUS status server [RADIUS_ADDRESS].")
 	homeServers := fs.String("radius.homeservers", "", "List of FreeRADIUS home servers to check, e.g. '172.28.1.2:1812:auth,172.28.1.3:1813:acct' [RADIUS_HOMESERVERS].")
+	radClients := fs.String("radius.clients", "", "List of FreeRADIUS clients to check")
 	radiusSecret := fs.String("radius.secret", "adminsecret", "FreeRADIUS client secret [RADIUS_SECRET].")
 
 	err := ff.Parse(fs, os.Args[1:], ff.WithEnvVarNoPrefix(), ff.WithConfigFileFlag("config"), ff.WithConfigFileParser(ff.JSONParser))
@@ -51,8 +52,8 @@ func main() {
 	registry := prometheus.NewRegistry()
 
 	hs := strings.Split(*homeServers, ",")
-
-	radiusClient, err := client.NewFreeRADIUSClient(*radiusAddr, hs, *radiusSecret, *radiusTimeout)
+	rc := strings.Split(*radClients, ",")
+	radiusClient, err := client.NewFreeRADIUSClient(*radiusAddr, hs, rc, *radiusSecret, *radiusTimeout)
 	if err != nil {
 		log.Fatal(err)
 	}
